@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ui/utis/extension.dart';
 import 'package:ui/utis/styles.dart';
+import 'package:ui/view/login/login_screen.dart';
 import 'package:ui/view/widgets/background_layer.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,51 +25,38 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 5.hp,
             ),
             Text(
-              'Sign In',
+              'Register',
               style: Styles.title.copyWith(fontSize: 20.sp),
             ),
             SizedBox(
               height: 1.hp,
             ),
             Text(
-              'Please Login To Using App',
-              style: Styles.content.copyWith(fontSize: 18.sp),
+              'New Account',
+              style: Styles.title.copyWith(fontSize: 20.sp),
             ),
             SizedBox(
-              height: 30.hp,
+              height: 27.hp,
+            ),
+            const TextWidget(
+              content: 'Full Name',
             ),
             const TextWidget(
               content: 'Email Address',
             ),
             const TextWidget(
-              content: 'Password',
+              content: 'Phone Number',
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Checkbox(
-                      value: false,
-                      onChanged: (value) {
-                        // Handle checkbox state change
-                      },
-                    ),
-                    Text(
-                      'Remember me',
-                      style: Styles.text,
-                    ),
-                  ],
-                ),
-                InkWell(
-                  onTap: () {
-                    // Handle "Forgot Password" action
-                  },
-                  child: Text('Forgot Password?',
-                      style: Styles.text.copyWith(
-                          color: Colors.red, fontWeight: FontWeight.bold)),
-                ),
-              ],
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 2.wp),
+              child: InkWell(
+                onTap: () {
+                  // Handle "Forgot Password" action
+                },
+                child: Text('Have a referal code ?',
+                    style: Styles.text.copyWith(
+                        color: Colors.red, fontWeight: FontWeight.bold)),
+              ),
             ),
             SizedBox(
               height: 8.hp,
@@ -76,17 +64,19 @@ class _LoginScreenState extends State<LoginScreen> {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  // Handle login button press
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) {
+                      return const LoginScreen();
+                    },
+                  ));
                 },
                 style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12.r)),
-                  padding: EdgeInsets.symmetric(horizontal: 15.wp),
+                  padding: EdgeInsets.symmetric(horizontal: 08.wp),
                   backgroundColor: Colors.red, // Change button color to red
                 ),
                 child: Text(
-                  'Sign In',
-                  style: Styles.title,
+                  'Register Account',
+                  style: Styles.title.copyWith(fontSize: 15.sp),
                 ),
               ),
             ),
@@ -98,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: Styles.text,
                   children: [
                     TextSpan(
-                        text: 'Register new account',
+                        text: 'Sign In with your account',
                         style: Styles.text.copyWith(
                             color: Colors.grey, fontWeight: FontWeight.bold)
                         // Add any navigation or tap handling for registration here
